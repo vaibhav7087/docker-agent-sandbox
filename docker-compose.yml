@@ -1,0 +1,15 @@
+services:
+  agent-sandbox:
+    build: .
+    container_name: agent_hardened_sandbox
+    # Hardened Linux cgroup constraints
+    mem_limit: 512m
+    cpus: 1.0
+    pids_limit: 100
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: false
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,size=64m
